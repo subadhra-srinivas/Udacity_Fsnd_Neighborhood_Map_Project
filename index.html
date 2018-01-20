@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Shops</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+     <div class="container">
+            <div class = "row">
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </div>
+            <div class = "row">
+                <div class="col-md-4">
+                    <ul data-bind="foreach: pizzaShopList">
+                       <li data-bind="text: name, click: $parent.setPizzaShopList"></li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-8">
+                   <div id="map"></div>
+                </div>
+            </div>
+     </div>
+
+     <!-- TODO 1: Create a place to put the map in the HTML-->
+
+
+   <!--TODO: Load the JS API ASYNCHRONOUSLY below.-->
+
+
+
+   <script async defer
+       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0UaSKLSeEjn-tV2NKwYrz5UQ-5SAco_c&v=3&callback=initMap">
+   </script>
+   <script src="js/libs/jquery.min.js"></script>
+   <script src="js/libs/knockout-3.4.2.js"></script>
+   <script src="js/script.js"></script>
+</body>
+</html>

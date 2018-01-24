@@ -1,5 +1,9 @@
-* {box-sizing:border-box;}
-body {background-color: #CCC;}
-
-html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 100%; }
+html, body, .container-fluid, #map {
+    height:100vw;
+}
+.container-fluid {
+    width:100vw;
+    position:absolute;
+    top:0;
+    padding:0;
+}

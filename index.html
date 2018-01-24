@@ -16,26 +16,34 @@
 <body>
 
     <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" data-bind="foreach: filteredMarkers">
-                <li class="sidebar-brand">
-                    <a href="#" data-bind="text: name, click: $parent.setPizzaShopList"></a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-
-                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-                <div id="map"></div>
+      <div class = "row">
+        <div class="col-md-4">
+           <input id="search" type="search" class="form-control" placeholder='filter for ...'  data-bind="textInput: filter" autocomplete="off">
+           <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                 <ul class="sidebar-nav" data-bind="foreach: filteredMarkers">
+                    <li class="sidebar-brand">
+                       <a href="#" data-bind="text: name, click: $parent.setPizzaShopList"></a>
+                    </li>
+                  </ul>
             </div>
+            <!-- /#sidebar-wrapper -->
         </div>
+
+        <div class="col-md-8">
+
+           <!-- Page Content -->
+           <div id="page-content-wrapper">
+               <div class="container-fluid">
+
+                   <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+                   <div id="map"></div>
+               </div>
+           </div>
         <!-- /#page-content-wrapper -->
+        </div>
+
+      </div>
 
     </div>
     <!-- /#wrapper -->

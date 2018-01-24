@@ -1,7 +1,6 @@
  // TODO: Create a map variable
 var map;
 var infoWindow;
-var bounds;
 var loadData;
 // TODO: Complete the following function to initialize the map
 function initMap() {
@@ -64,6 +63,7 @@ loadData = function(data) {
     this.city = '';
     this.contact = '';
     this.displayString ='';
+
     this.visible = ko.observable(true);
     //console.log(this.lat);
 
@@ -103,21 +103,35 @@ loadData = function(data) {
         position: new google.maps.LatLng(data.lat, data.lng),
         map: map,
         title: data.name,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
     });
+
+
 
     // When marker is clicked on open up infowindow designated to the marker with it's information.
     this.marker.addListener('click', function(){
 
         self.marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){ self.marker.setAnimation(null); }, 750);
+        setTimeout(function(){ self.marker.setAnimation(null); }, 1450);
 
         self.infoWindow.setContent("<b>"+data.name+"</b></br>"+self.address +"</br>"+self.city+"</br>"+self.contact);
         self.infoWindow.open(map, this);
     });
 
+    // Makes the one selected marker visible
+    this.displayMarker = ko.computed(function() {
+        if(self.visible() === true) {
+            self.marker.setMap(map);
+        } else {
+            self.marker.setMap(null);
+        }
+        return true;
+    }, self);
+
 
 };
+
+
 
 var ViewModel= function() {
 
@@ -125,6 +139,8 @@ var ViewModel= function() {
 
 
     this.pizzaShopList = ko.observableArray([]);
+
+    this.filter = ko.observable('');
 
     data.forEach(function(pizzaShop) {
         self.pizzaShopList.push(new loadData(pizzaShop));
@@ -134,9 +150,40 @@ var ViewModel= function() {
 
     this.currentShop = ko.observable(this.pizzaShopList()[0]);
 
-
     this.setPizzaShopList = function(clickedPizzaShopList) {
+           var clickedShop = this;
 
+           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"+clickedShop.city+"</br>"+clickedShop.contact);
+           clickedShop.infoWindow.open(map, clickedShop.marker);
+           clickedShop.marker.setAnimation(google.maps.Animation.BOUNCE);
+           setTimeout(function() {
+                 clickedShop.marker.setAnimation(null);
+           }, 1450);
+           map.panTo(clickedShop.marker.position);
     };
+
+   //filter the items using the filter text
+    this.filteredMarkers = ko.computed(function() {
+          var filter = self.filter().toLowerCase();
+          if (!filter) {
+                self.pizzaShopList().forEach(function(pizzaShop){
+                         pizzaShop.visible(true);
+
+                });
+                return self.pizzaShopList();
+          } else {
+                return ko.utils.arrayFilter(self.pizzaShopList(), function(pizzaShop) {
+                        var result = pizzaShop.name.toLowerCase().indexOf(filter) >= 0;
+
+                        //sets markers with match to visible
+                        pizzaShop.visible(result);
+                        pizzaShop.marker.setAnimation(google.maps.Animation.DROP);
+
+                        return result;
+
+                });
+          }
+    }, self);
 };
+
 

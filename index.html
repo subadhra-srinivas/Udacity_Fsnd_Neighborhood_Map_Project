@@ -16,11 +16,12 @@
 <body>
 
     <div id="wrapper">
-     <div id="container">
-      <div class = "row">
-        <div class="col-md-4">
-           <input id="search" type="search" class="form-control" placeholder='filter for ...'  data-bind="textInput: filter" autocomplete="off">
-           <!-- Sidebar -->
+
+            <h1> Pizza Shops in Sunnyvale </h1>
+            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Click the link to see the Pizza Shops</a></br></br>
+            <input id="search" type="search" class="form-control" placeholder='filter for ...'  data-bind="textInput: filter" autocomplete="off"></br></br>
+
+            <!-- Sidebar -->
             <div id="sidebar-wrapper">
                  <ul class="sidebar-nav" data-bind="foreach: filteredMarkers">
                     <li class="sidebar-brand">
@@ -29,24 +30,18 @@
                   </ul>
             </div>
             <!-- /#sidebar-wrapper -->
-        </div>
-
-        <div class="col-md-8">
 
            <!-- Page Content -->
            <div id="page-content-wrapper">
+
                <div class="container-fluid">
 
-                   <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                    <div id="map"></div>
                </div>
            </div>
         <!-- /#page-content-wrapper -->
-        </div>
-
-      </div>
-     </div>
     </div>
+
     <!-- /#wrapper -->
 
 
@@ -59,6 +54,11 @@
    <script src="js/libs/jquery.min.js"></script>
    <script src="js/libs/knockout-3.4.2.js"></script>
    <script src="js/script.js"></script>
+
+   <script async defer
+       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0UaSKLSeEjn-tV2NKwYrz5UQ-5SAco_c&v=3&callback=initMap">
+   </script>
+
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {

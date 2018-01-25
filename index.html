@@ -16,9 +16,8 @@
 <body>
 
     <div id="wrapper">
+           <h1> Pizza Shops in Sunnyvale </h1>
 
-            <h1> Pizza Shops in Sunnyvale </h1>
-            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Click the link to see the Pizza Shops</a></br></br>
             <input id="search" type="search" class="form-control" placeholder='filter for ...'  data-bind="textInput: filter" autocomplete="off"></br></br>
 
             <!-- Sidebar -->
@@ -59,12 +58,11 @@
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0UaSKLSeEjn-tV2NKwYrz5UQ-5SAco_c&v=3&callback=initMap">
    </script>
 
-    <!-- Menu Toggle Script -->
+  <!-- Menu Toggle Script -->
     <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+
+     $("#wrapper").toggleClass("toggled");
+
     </script>
 
 </body>

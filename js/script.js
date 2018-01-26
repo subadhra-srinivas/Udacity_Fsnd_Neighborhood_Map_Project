@@ -1,12 +1,12 @@
- // TODO: Create a map variable
+ // Create a map variable
 var map;
 var infoWindow;
 var loadData;
-// TODO: Complete the following function to initialize the map
+// Complete the following function to initialize the map
 function initMap() {
 
-// TODO: use a constructor to create a new map JS object. You can use the coordinates
-// we used, 40.7413549, -73.99802439999996 or your own!
+// use a constructor to create a new map JS object. You can use the coordinates
+// we used, 37.3366824, -122.031958 or your own!
     map = new google.maps.Map(document.getElementById('map'), {
        center: {lat: 37.3366824, lng: -122.031958},
        zoom: 13
@@ -17,7 +17,7 @@ function initMap() {
    ko.applyBindings(new ViewModel());
 
 }
-
+//initialize the data
 var data = [
          {
           name: 'Pizza My Heart',
@@ -54,7 +54,7 @@ var data = [
 
 
 loadData = function(data) {
-    //console.log(data);
+
     var self = this;
     this.name = data.name;
     this.lat = data.lat;
@@ -65,7 +65,7 @@ loadData = function(data) {
     this.displayString ='';
 
     this.visible = ko.observable(true);
-    //console.log(this.lat);
+
 
 
 
@@ -73,20 +73,20 @@ loadData = function(data) {
     var client_secret= 'MGNJU45QOQKYTCYVUVQTW5KPGEZEI2BUE4UYZEIRGKJIOHPE';
 
 
-
+    //FourSquare query to get the address, city and contact information for the pizza shop
     var pizza_shop = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll='+ this.lat+'%2C%20'+this.lng+'&query='+this.name+'&client_id='+client_id+'&client_secret='+client_secret;
 
     $.getJSON(pizza_shop).done(function(data) {
 
        var shop = data.response.venues[0];
 
-       //console.log(shop);
+
        self.address = shop.location.formattedAddress[0] || 'No Address';
-       //console.log(self.address);
+
        self.city = shop.location.formattedAddress[1] || 'No Address';
-       //console.log(self.city);
+
        self.contact = shop.contact.phone || 'No Phone';
-       //console.log(self.contact);
+
 
 
 
@@ -148,8 +148,8 @@ var ViewModel= function() {
 
     console.log(self.pizzaShopList()[0]);
 
-    this.currentShop = ko.observable(this.pizzaShopList()[0]);
 
+    //clicks the PizzaShopList to display the marker and infoWindow
     this.setPizzaShopList = function(clickedPizzaShopList) {
            var clickedShop = this;
 

@@ -21,7 +21,7 @@ function initMap() {
 function mapError() {
      // Error handling
      alert("There is trouble loading the google maps. Please refresh and try again.");
-};
+}
 
 //initialize the data for the pizza Shop
 var data = [
@@ -105,8 +105,7 @@ LoadData = function(data) {
 
 
     // Puts the content string inside infowindow.
-    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"
-                                                           +self.city+"</br>"+self.contact});
+    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"+self.city+"</br>"+self.contact});
 
     // Places the marker to it's designed location on the map along with it's title.
     this.marker = new google.maps.Marker({
@@ -163,8 +162,7 @@ var ViewModel= function() {
     this.setPizzaShopList = function(clickedPizzaShopList) {
            var clickedShop = this;
 
-           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"
-                                             +clickedShop.city+ "</br>"+clickedShop.contact);
+           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"+clickedShop.city+ "</br>"+clickedShop.contact);
            clickedShop.infoWindow.open(map, clickedShop.marker);
            clickedShop.marker.setAnimation(google.maps.Animation.BOUNCE);
            setTimeout(function() {

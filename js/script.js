@@ -69,7 +69,6 @@ loadData = function(data) {
     this.visible = ko.observable(true);
 
 
-
     //Store the client_id and client_secret from FourSquare in a variable
     var client_id = '42ITZKVEY5AIIHWENOHIF1CXCCXYS1VPU4V0VSRWYDTYZNM5';
     var client_secret= 'MGNJU45QOQKYTCYVUVQTW5KPGEZEI2BUE4UYZEIRGKJIOHPE';
@@ -99,8 +98,7 @@ loadData = function(data) {
 
 
     // Puts the content string inside infowindow.
-    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"
-                                                           +self.city+"</br>"+self.contact});
+    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"+self.city+"</br>"+self.contact});
 
     // Places the marker to it's designed location on the map along with it's title.
     this.marker = new google.maps.Marker({

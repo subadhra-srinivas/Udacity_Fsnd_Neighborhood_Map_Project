@@ -7,3 +7,9 @@ html, body, .container-fluid, #map {
     top:0;
     padding:0;
 }
+
+@media screen and (min-width: 900px) {
+    h1 {
+        font-size: 20px;
+    }
+}

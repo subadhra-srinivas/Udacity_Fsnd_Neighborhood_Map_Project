@@ -1,8 +1,8 @@
- // Create a map variable
+ // Create a global variable
 var map;
 var infoWindow;
 var loadData;
-// Complete the following function to initialize the map
+// function to initialize the map
 function initMap() {
 
 // use a constructor to create a new map JS object. You can use the coordinates
@@ -17,7 +17,7 @@ function initMap() {
    ko.applyBindings(new ViewModel());
 
 }
-//initialize the data
+//initialize the data for the pizza Shop
 var data = [
          {
           name: 'Pizza My Heart',
@@ -52,9 +52,11 @@ var data = [
 
 ];
 
-
+//function gets information from FourSquare and stores in the variable,
+//creates infoWindow and markers for the particular location
 loadData = function(data) {
 
+    //initialize local variables
     var self = this;
     this.name = data.name;
     this.lat = data.lat;
@@ -68,7 +70,7 @@ loadData = function(data) {
 
 
 
-
+    //Store the client_id and client_secret from FourSquare in a variable
     var client_id = '42ITZKVEY5AIIHWENOHIF1CXCCXYS1VPU4V0VSRWYDTYZNM5';
     var client_secret= 'MGNJU45QOQKYTCYVUVQTW5KPGEZEI2BUE4UYZEIRGKJIOHPE';
 
@@ -76,6 +78,7 @@ loadData = function(data) {
     //FourSquare query to get the address, city and contact information for the pizza shop
     var pizza_shop = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll='+ this.lat+'%2C%20'+this.lng+'&query='+this.name+'&client_id='+client_id+'&client_secret='+client_secret;
 
+    //AJAX request to FourSquare
     $.getJSON(pizza_shop).done(function(data) {
 
        var shop = data.response.venues[0];
@@ -89,14 +92,15 @@ loadData = function(data) {
 
 
 
-
+    //function to check if there is any error in getting the data from Foursquare
     }).fail(function(e) {
         alert('Pizza Shops Could Not be Loaded');
     });
 
 
     // Puts the content string inside infowindow.
-    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"+self.city+"</br>"+self.contact});
+    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"
+                                                           +self.city+"</br>"+self.contact});
 
     // Places the marker to it's designed location on the map along with it's title.
     this.marker = new google.maps.Marker({
@@ -132,21 +136,21 @@ loadData = function(data) {
 };
 
 
-
+//Creating a Knockout ViewModel
 var ViewModel= function() {
 
     var self = this;
 
-
+    //Creating a pizzaShopList as a observable array
     this.pizzaShopList = ko.observableArray([]);
 
+    //Creating the filter as observable variable
     this.filter = ko.observable('');
 
+    //Creating a new pizzaShopList array
     data.forEach(function(pizzaShop) {
         self.pizzaShopList.push(new loadData(pizzaShop));
     });
-
-    console.log(self.pizzaShopList()[0]);
 
 
     //clicks the PizzaShopList to display the marker and infoWindow

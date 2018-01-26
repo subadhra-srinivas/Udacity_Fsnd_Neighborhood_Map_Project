@@ -34,8 +34,9 @@
            <div id="page-content-wrapper">
 
                <div class="container-fluid">
-
+                   <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                    <div id="map"></div>
+
                </div>
            </div>
         <!-- /#page-content-wrapper -->
@@ -45,7 +46,7 @@
 
 
 
-    <!-- Menu Toggle Script -->
+
 
 
    <script src="js/jquery-3.2.1.min.js"></script>
@@ -58,12 +59,13 @@
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0UaSKLSeEjn-tV2NKwYrz5UQ-5SAco_c&v=3&callback=initMap">
    </script>
 
-  <!-- Menu Toggle Script -->
-    <script>
+   <!-- Menu Toggle Script -->
+   <script>
 
-     $("#wrapper").toggleClass("toggled");
+     $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
-    </script>
+   </script>
 
-</body>
-</html>

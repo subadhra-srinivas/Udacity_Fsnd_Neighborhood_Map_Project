@@ -1,7 +1,7 @@
  // Create a global variable
 var map;
 var infoWindow;
-var loadData;
+var LoadData;
 // function to initialize the map
 function initMap() {
 

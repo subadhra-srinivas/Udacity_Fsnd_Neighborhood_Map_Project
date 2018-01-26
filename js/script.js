@@ -8,15 +8,21 @@ function initMap() {
 // use a constructor to create a new map JS object. You can use the coordinates
 // we used, 37.3366824, -122.031958 or your own!
     map = new google.maps.Map(document.getElementById('map'), {
-       center: {lat: 37.3366824, lng: -122.031958},
+       center: {lat: 37.366824, lng: -122.031958},
        zoom: 13
     });
-
 
 
    ko.applyBindings(new ViewModel());
 
 }
+
+//Error callback for GMap API request
+function mapError() {
+     // Error handling
+     alert("There is trouble loading the google maps. Please refresh and try again.");
+};
+
 //initialize the data for the pizza Shop
 var data = [
          {
@@ -54,7 +60,7 @@ var data = [
 
 //function gets information from FourSquare and stores in the variable,
 //creates infoWindow and markers for the particular location
-loadData = function(data) {
+LoadData = function(data) {
 
     //initialize local variables
     var self = this;
@@ -67,6 +73,7 @@ loadData = function(data) {
     this.displayString ='';
 
     this.visible = ko.observable(true);
+
 
 
     //Store the client_id and client_secret from FourSquare in a variable
@@ -98,7 +105,8 @@ loadData = function(data) {
 
 
     // Puts the content string inside infowindow.
-    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"+self.city+"</br>"+self.contact});
+    this.infoWindow = new google.maps.InfoWindow({content: "<b>"+data.name+"</b></br>"+self.address +"</br>"
+                                                           +self.city+"</br>"+self.contact});
 
     // Places the marker to it's designed location on the map along with it's title.
     this.marker = new google.maps.Marker({
@@ -114,7 +122,7 @@ loadData = function(data) {
     this.marker.addListener('click', function(){
 
         self.marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){ self.marker.setAnimation(null); }, 1450);
+        setTimeout(function(){ self.marker.setAnimation(null); }, 1400);
 
         self.infoWindow.setContent("<b>"+data.name+"</b></br>"+self.address +"</br>"+self.city+"</br>"+self.contact);
         self.infoWindow.open(map, this);
@@ -147,7 +155,7 @@ var ViewModel= function() {
 
     //Creating a new pizzaShopList array
     data.forEach(function(pizzaShop) {
-        self.pizzaShopList.push(new loadData(pizzaShop));
+        self.pizzaShopList.push(new LoadData(pizzaShop));
     });
 
 
@@ -155,7 +163,8 @@ var ViewModel= function() {
     this.setPizzaShopList = function(clickedPizzaShopList) {
            var clickedShop = this;
 
-           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"+clickedShop.city+"</br>"+clickedShop.contact);
+           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"
+                                             +clickedShop.city+ "</br>"+clickedShop.contact);
            clickedShop.infoWindow.open(map, clickedShop.marker);
            clickedShop.marker.setAnimation(google.maps.Animation.BOUNCE);
            setTimeout(function() {

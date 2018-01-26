@@ -157,8 +157,8 @@ var ViewModel= function() {
     this.setPizzaShopList = function(clickedPizzaShopList) {
            var clickedShop = this;
 
-           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"+clickedShop.city+
-                                             "</br>"+clickedShop.contact);
+           clickedShop.infoWindow.setContent("<b>"+clickedShop.name+"</b></br>"+clickedShop.address +"</br>"+
+                                             clickedShop.city+ "</br>"+clickedShop.contact);
            clickedShop.infoWindow.open(map, clickedShop.marker);
            clickedShop.marker.setAnimation(google.maps.Animation.BOUNCE);
            setTimeout(function() {

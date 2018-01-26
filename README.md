@@ -1,5 +1,5 @@
 # Udacity_Fsnd_Neighborhood_Map_Project
-This is a web application that shows the pizza shops in Sunnyvale, CA with markers and additional information from FourSquarei</br>
+This is a web application that shows the pizza shops in Sunnyvale, CA with markers and additional information from FourSquare</br>
 
 Link to the project: https://subadhra-srinivas.github.io/Udacity_Fsnd_Neighborhood_Map_Project/</br>
 

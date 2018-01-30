@@ -148,6 +148,16 @@ var ViewModel= function() {
 
     var self = this;
 
+    //Creating isOpen as a observable
+    this.isOpen = ko.observable(false);
+
+    //Sets isOpen variable to True or False
+    this.toggle =  function(clickedToggle) {
+       var clickedhref = this;
+       clickedhref.isOpen(!clickedhref.isOpen());
+
+    };
+
     //Creating a pizzaShopList as a observable array
     this.pizzaShopList = ko.observableArray([]);
 

@@ -41,3 +41,7 @@ stuck up with Knockout.
 
 https://subadhra-srinivas.github.io/Udacity_Fsnd_Neighborhood_Map_Project/</br>
 
+## License:
+
+This project is licensed under the terms of the MIT license.
+
